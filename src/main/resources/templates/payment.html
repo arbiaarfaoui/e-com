@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<head>
+    <meta charset="utf-8">
+    <title>Payment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- LINK CSS FILE -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/png"
+          href="https://zupimages.net/up/21/06/gqsr.jpg" />
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <link rel="icon" type="image/png"
+          href="https://zupimages.net/up/21/06/gqsr.jpg" />
+
+</head>
+<body>
+<!-- DEBUT HEADER -->
+<div class="header-container">
+    <div class="site-name">
+        <a href="https://zupimages.net/viewer.php?id=21/06/rcrz.png"><img
+                src="https://zupimages.net/up/21/06/rcrz.png" alt=""  height="60x"
+                width="250x">
+        </a>
+    </div>
+    <div class="header-bar">
+        <!--BOUTONS -->
+        <form name="logoutForm" th:action="@{/logout}" method="post">
+            <h7 style="color:royalblue;font-weight:bold;"> Bienvenue </h7>
+            <h7 sec:authentication="name" style="color:royalblue;font-weight:bold;">
+            </h7>
+            <button class="btn" type="submit" value="Sign Out"
+                    style="background: #0998A4; color: white">Déconnexion</button>
+
+            <button type="button" class="btn"
+                    style="background: #0998A4; color: white">
+                Favoris <span class="fa fa-heart"></span>
+            </button>
+        </form>
+
+        <!--BOUTONS -->
+    </div>
+</div>
+
+<!-- FIN HEADER -->
+<!--**************************************DEBUT PAIEMENT***********************************************************--->
+
+<div class="card-header"
+     style="color: #0998A4; font-size: 200%; font-family: fantasy;">
+    Paiement <img class="img-responsive pull-center"
+                  src="http://i76.imgup.net/accepted_c22e0.png">
+</div>
+<br>
+
+<div class="container">
+    <div class="form-row justify-content-center">
+        <div class="col-xs-6 col-md-4">
+            <div class="panel-body">
+                <div class="form-row justify-content-center">
+                    <span th:text="'Total '+${prixTotal} + ' €'"></span> <br>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="cardNumber">NUMÉRO DE LA CARTE</label>
+                                <div class="input-group-append">
+										<span class="input-group-text"><i
+                                                class="fa fa-credit-card"></i></span>
+                                    <div class="input-group">
+                                        <input type="tel" class="form-control" name="cardNumber"
+                                               placeholder="Numéo de carte valide" style="width: 300px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row justify-content-center">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="form-group">
+                                <label for="cardExpiry">DATE D'EXPIRATION</span></label>
+
+                                <div class="input-group-append">
+										<span class="input-group-text"><i
+                                                class="fa fa-calendar"></i></span> <input type="text"
+                                                                                          class="form-control" name="cardExpiry" placeholder="MM / YY"
+                                                                                          style="width: 300px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cardCVC">CVC</label> <input type="text"
+                                                                class="form-control" name="cardCVC" placeholder="CVC"
+                                                                style="width: 100px;" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-row justify-content-center">
+                <button class="btn btn-light my-4 btn-block" type="submit"
+                        style="color: #0998A4; border: solid; font-weight: bold; width: 100px;">Valider
+                </button>
+            </div>
+        </div>
+        <!--**************************************FIN PAIEMENT***********************************************************--->
+
+        <!--**************************************FOOTER************************************************************--->
+
+    </div>
+</div>
+
+<!-- DEBUT FOOTER -->
+
+<footer class="page-footer" style="color: white; background: #0998A4;">
+    <hr>
+
+    <div class="container text-center text-md-left mt-5">
+
+        <!-- Grid row -->
+        <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase font-weight-bold">ShopEnLigne</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px;">
+                <p>Le contenu de ce site est protégé par la loi du copyright.</p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Produits</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px;">
+                <p>
+                    <a href="#!" style="color: white;">Femme</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Homme</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Accessoires</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Promotions</a>
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Help</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px;">
+                <p>
+                    <a href="#!" style="color: white;">Service Client</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Mon compte</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Magasin</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Mentions Légales</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px;">
+                <p>
+                    <i class="fa fa-home mr-3"></i> Paris,75000
+                </p>
+                <p>
+                    <i class="fa fa-envelope mr-3"></i> ShopEnLigne@gmail.com
+                </p>
+                <p>
+                    <i class="fa fa-phone mr-3"></i> + 01 000 000 00
+                </p>
+                <p>
+                    <i class="fa fa-print mr-3"></i> + 01 000 000 00
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">
+        © 2020 Copyright:ShopEnLigne tous droits réservés <a href="#"
+                                                          style="color: white;"></a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<head>
+    <meta charset="utf-8">
+    <title>Produits</title>
+    <!-- Design bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!-- LINK CSS FILE -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
+    <link rel="icon" type="image/png"
+          href="https://zupimages.net/up/21/06/gqsr.jpg" />
+</head>
+<body>
+<!-- DEBUT HEADER -->
+<div class="header-container">
+    <div class="site-name">
+        <a href="https://zupimages.net/viewer.php?id=21/06/rcrz.png"><img
+                src="https://zupimages.net/up/21/06/rcrz.png" alt=""  height="60x"
+                width="250x">
+        </a>
+    </div>
+    <div class="header-bar">
+        <!--NEW BLOCK -->
+        <!--BOUTONS -->
+        <form name="logoutForm" th:action="@{/logout}" method="post">
+            <h7 sec:authorize="isAuthenticated()"
+                style="color:royalblue;font-weight:bold;"> Bienvenue </h7>
+
+            <a sec:authorize="isAuthenticated()" sec:authentication="name"
+               style="color: royalblue;"></a> <a sec:authorize="!isAuthenticated()"
+                                           type="button" class="btn" th:href="@{/login}"
+                                           style="background: #0998A4; color: white"> Connexion <span
+                class="fa fa-user"> </span></a>
+
+
+            <button sec:authorize="isAuthenticated()" class="btn" type="submit"
+                    value="Sign Out" style="background: #0998A4; color: white">Déconnexion</button>
+
+            <button type="button" class="btn"
+                    style="background: #0998A4; color: white">
+                Favoris <span class="fa fa-heart"></span>
+            </button>
+            <button type="button" class="btn"
+                    onclick="window.location='AjoutPanier'"
+                    style="background: #0998A4; color: white">
+                Panier <span class="fa fa-shopping-cart"></span>
+            </button>
+        </form>
+
+        <!--BOUTONS -->
+    </div>
+</div>
+
+<!-- FIN HEADER -->
+
+<!-- DEBUT BODY -->
+<div class="jumbotron big-banner"
+     style="height: 500px; padding-top: 150px">
+    <!-- BARRE DE RECHERCHE -->
+    <div class="row d-flex justify-content-center">
+        <div class="col-6">
+            <br> <br> <br> <br> <br>
+            <form th:action="@{/products}" method="get">
+                <!-- la classe mb-3 permet d'ajouter un petit espace MarginButtom -->
+                <div class="input-group">
+                    <!-- th:value="${motCle}" permet de récupérer le mot clé saisit par l'utilisateur dans la barre de recherche -->
+
+                    <input type="text" placeholder="Taper votre recherche"
+                           name="motCle" th:value="${motCle}" class="form-control" />
+                    <button class="btn"
+                            style="color: #0998A4; width: 130px; height: 40px; font-weight: bold;">
+                        <span class="fa fa-search"></span>Chercher
+                    </button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header"
+             style="color: #0998A4; font-size: 200%; font-family: fantasy;">Nos
+            produits</div>
+        <div class="card-body">
+            <!-- VERSION 2 DE PRESENTATION DES PRODUITS  -->
+            <div class="row">
+                <tr th:each="p:${pageProduits}">
+                    <div class="col-lg-4">
+                        <div class="card mt-2 ml-5">
+                            <div class="card-body">
+                                <br> <img th:src="${p.photo}" alt="PhotoProduit"
+                                          style="width: 250px; height: 250px">
+                                <h6 th:text="${p.designation}"></h6>
+                                <h6 class="fa fa-tag" th:text="'    '+${p.prix} + ' €'"></h6>
+                                <br>
+                                <h6 class="fa fa-table"
+                                    th:text="'  Quantité restante: '+${p.quantite}
+							  +' articles '"></h6>
+                                <br>
+
+                                <!-- Boutton Ajouter au panier -->
+
+                                <div class="card-footer">
+
+                                    <!-- <button onclick="window.location='panier'" class="btn"
+
+                                                style="color: #E70014; border: solid #E70014; font-weight: bold;">
+                                            <span class="fa fa-cart-plus"> </span> Ajouter au panier
+                                        </button> -->
+
+                                    <a class="btn btn-danger"
+                                       th:href="@{/AjoutPanier(idProduit=${p.id})}"><span
+                                            class="fa fa-cart-plus"> </span> Ajouter au panier</a>
+                                </div>
+                                <!-- FIN Boutton Ajouter au panier -->
+
+                            </div>
+                            <!-- Boutton Supprimer -->
+                            <div sec:authorize="hasRole('ROLE_ADMIN')">
+                                <a
+                                        onclick="javascript:return confirm('Voulez-vous vraiment supprimer ce produit?')"
+                                        class="btn btn-light"
+                                        th:href="@{/deleteProduit(id=${p.id},page=${currentPage}, size=${size}, motCle=${motCle})}">Rupture
+                                    de stock : Supprimer</a>
+
+                            </div>
+                        </div>
+                        <!-- Fin Boutton Supprimer -->
+
+                        <br>
+
+                    </div>
+                </tr>
+            </div>
+
+            <!--FIN VERSION DE PRESENTATION DES PRODUITS -->
+            <hr>
+            <hr>
+            <!-- PAGINATION -->
+            <ul class="pagination justify-content-center">
+                <ul class="nav nav-pills">
+                    <li class="page-item"><a class="page-link"
+                                             style="color: #0998A4;" href="#" tabindex="-1">Précédent</a></li>
+                    <!-- créer une bare de navigation -->
+                    <li th:each="page,status:${pages}">
+                        <!-- si je clique sur le numéro de la page, la page correspondante s'affiche -->
+                        <!-- th:class="" càd appliquer une classe css suite à une condition: si je suis sur la page coourrante japplique la classe btn-primary sinon j'applique la classe btn -->
+                        <a style="color: #0998A4;"
+                           th:class="${status.index==currentPage?'btn btn-secondary':'btn'}"
+                           th:href="@{products(page=${status.index}, size=${size},motCle=${motCle})}"
+                           th:text="${status.index+1}"></a>
+                    </li>
+                    <li class="page-item"><a class="page-link"
+                                             style="color: #0998A4;" href="#">Suivant</a></li>
+                </ul>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- FIN PAGINATION -->
+<!-- FIN BODY -->
+
+<!-- DEBUT FOOTER -->
+
+<footer class="page-footer" style="color: white; background: #0998A4;">
+    <hr>
+
+    <div class="container text-center text-md-left mt-5">
+
+        <!-- Grid row -->
+        <div class="row mt-3">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                <!-- Content -->
+                <h6 class="text-uppercase font-weight-bold">ShopEnLigne</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px;">
+                <p>Le contenu de ce site est protégé par la loi du copyright.</p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Produits</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px;">
+                <p>
+                    <a href="#!" style="color: white;">Femme</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Homme</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Accessoires</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Promotions</a>
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Help</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px;">
+                <p>
+                    <a href="#!" style="color: white;">Service Client</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Mon compte</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Magasin</a>
+                </p>
+                <p>
+                    <a href="#!" style="color: white;">Mentions Légales</a>
+                </p>
+            </div>
+            <!-- Grid column -->
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                <!-- Links -->
+                <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                    style="width: 60px;">
+                <p>
+                    <i class="fa fa-home mr-3"></i> Paris,75000
+                </p>
+                <p>
+                    <i class="fa fa-envelope mr-3"></i> ShopEnLigne@gmail.com
+                </p>
+                <p>
+                    <i class="fa fa-phone mr-3"></i> + + 01 000 000 00
+                </p>
+                <p>
+                    <i class="fa fa-print mr-3"></i> + 01 000 000 00
+                </p>
+
+            </div>
+            <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">
+        © 2020 Copyright:ShopEnLigne tous droits réservés <a href="#" style="color: white;"></a>
+    </div>
+    <!-- Copyright -->
+</footer>
+<!-- Footer -->
+</body>
+</html>
