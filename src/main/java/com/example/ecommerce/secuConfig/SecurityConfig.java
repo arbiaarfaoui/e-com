@@ -19,23 +19,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth
-                .jdbcAuthentication()
-                .dataSource(dataSource)
-<<<<<<< HEAD
-                .passwordEncoder(passwordEncoder())
-=======
-                .passwordEncoder(new BCryptPasswordEncoder())
->>>>>>> 197820c (modif)
-                .usersByUsernameQuery(
-                        "SELECT username, password, enabled from users where username = ?")
-                .authoritiesByUsernameQuery(
-                        "SELECT u.username, a.authority " +
-                                "FROM user_authorities a, users u " +
-                                "WHERE u.username = ? " +
-                                "AND u.id = a.user_id"
-                );
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication()
+                .dataSource(dataSource);
+                /*
+                .withUser(User.withUsername("user")
+                        .password(passwordEncoder().encode("pass"))
+                        .roles("USER"));
+                 */
 
         //BCryptPasswordEncoder bcpe= getBCPE();//
         //pour definir la maniere dont on va chercher les utilisateurs
@@ -50,15 +41,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // pour definir les strategies de securités,, les regles
         //on demande a Spring qu'on a besoin de passer par une authentification basée par un formulaire
         http.formLogin().loginPage("/login");
+
         //securiser les ressources de l'appli
         http.authorizeRequests()
-                .antMatchers("/AjoutPanier").hasRole("admin")
                 .antMatchers("/deleteProduit").hasRole("admin")
-                .antMatchers("/AjoutPanier").hasRole("user")
-                .antMatchers("/deleteProduitPanier").hasRole("user");
+                .antMatchers("/AjoutPanier").hasRole("USER")
+                .antMatchers("/deleteProduitPanier").hasRole("USER");
 
 
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

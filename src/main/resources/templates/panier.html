@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <!--Déclarer le namespace xmlns de thymeleaf avec le préfixe qu'on utilise qui est th -->
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Panier</title>
     <!-- Design bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <script crossorigin="anonymous"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- LINK CSS FILE -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
-    <link rel="icon" type="image/png"
-          href="https://zupimages.net/up/21/06/gqsr.jpg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}" type="text/css">
+    <link href="https://zupimages.net/up/21/06/gqsr.jpg" rel="icon"
+          type="image/png"/>
 
 </head>
 <body>
@@ -23,21 +29,22 @@
 <div class="header-container">
     <div class="site-name">
         <a href="https://zupimages.net/viewer.php?id=21/06/rcrz.png"><img
-                src="https://zupimages.net/up/21/06/rcrz.png" alt=""  height="60x"
+                alt="" height="60x" src="https://zupimages.net/up/21/06/rcrz.png"
                 width="250x">
         </a>
     </div>
     <div class="header-bar">
         <!--BOUTONS -->
-        <form name="logoutForm" th:action="@{/logout}" method="post">
-            <h7 style="color:royalblue;font-weight:bold;"> Bienvenue </h7>
+        <form method="post" name="logoutForm" th:action="@{/logout}">
+            <h7 style="color:royalblue;font-weight:bold;"> Bienvenue</h7>
             <h7 sec:authentication="name" style="color:royalblue;font-weight:bold;">
             </h7>
-            <button class="btn" type="submit" value="Sign Out"
-                    style="background: #0998A4; color: white">Déconnexion</button>
+            <button class="btn" style="background: #0998A4; color: white" type="submit"
+                    value="Sign Out">Déconnexion
+            </button>
 
-            <button type="button" class="btn"
-                    style="background: #0998A4; color: white">
+            <button class="btn" style="background: #0998A4; color: white"
+                    type="button">
                 Favoris <span class="fa fa-heart"></span>
             </button>
         </form>
@@ -48,8 +55,8 @@
 <div class="card-header">
     <h6 style="color: #0998A4; font-size: 200%; font-family: fantasy;">Contenu
         actuel de votre panier</h6>
-    <button type="button" class="btn" onclick="window.location='products'"
-            style="background: #0998A4; color: white">
+    <button class="btn" onclick="window.location='products'" style="background: #0998A4; color: white"
+            type="button">
         Ajouter d'autres articles <span class="fa fa-shopping-cart"></span>
     </button>
     <!-- PRESENTATION DES PRODUITS  -->
@@ -66,13 +73,13 @@
                         </tr>
                         <tr th:each="p:${pageProduitsPanier}">
 
-                            <td th:text="${p.designation}"></td>
+
                             <td th:text="${p.prix}"></td>
-                            <td><img th:src="${p.photo}" alt="PhotoProduit"
-                                     style="width: 50px; height: 50px"></td>
+                            <td><img alt="PhotoProduit" style="width: 50px; height: 50px"
+                                     th:src="${p.photo}"></td>
                             <td><a
-                                    onclick="javascript:return confirm('Voulez-vous vraiment retirer ce produit de votre panier ?')"
                                     class="btn btn-danger"
+                                    onclick="javascript:return confirm('Voulez-vous vraiment retirer ce produit de votre panier ?')"
                                     th:href="@{/deleteProduitPanier(id=${p.id})}"> Supprimer</a></td>
                         </tr>
                     </table>
@@ -103,8 +110,8 @@
                         </tr>
 
                         <tr>
-                            <td colspan="2"><a type="button" class="btn"
-                                               style="background: #0998A4; color: white" th:href="@{/payment}">
+                            <td colspan="2"><a class="btn" style="background: #0998A4; color: white"
+                                               th:href="@{/payment}" type="button">
                                 Valider votre Panier <span class="fa fa-shopping-cart"></span>
                             </a></td>
                         </tr>

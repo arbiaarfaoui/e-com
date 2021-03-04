@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title>Authentification</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="icon" type="image/png"
-          href= "https://zupimages.net/up/21/06/gqsr.jpg"/>
-    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
-    <link rel="icon" type="image/png"
-          href="https://zupimages.net/up/21/06/gqsr.jpg" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <script crossorigin="anonymous"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"
+          rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"
+          rel="stylesheet">
+    <link href="https://zupimages.net/up/21/06/gqsr.jpg" rel="icon"
+          type="image/png"/>
+    <link rel="stylesheet" th:href="@{/styles.css}" type="text/css">
+    <link href="https://zupimages.net/up/21/06/gqsr.jpg" rel="icon"
+          type="image/png"/>
 
 </head>
 <body>
@@ -23,23 +29,20 @@
 <div class="header-container">
     <div class="site-name">
         <a href="https://zupimages.net/viewer.php?id=21/06/rcrz.png"><img
-                src="https://zupimages.net/up/21/06/rcrz.png" alt=""  height="60x"
+                alt="" height="60x" src="https://zupimages.net/up/21/06/rcrz.png"
                 width="250x">
         </a>
     </div>
     <div class="header-bar">
         <!--BOUTONS -->
-<<<<<<< HEAD
-
-=======
->>>>>>> 197820c (modif)
-        <button type="button" class="btn"
+        <button class="btn"
                 onclick="window.location='products'"
-                style="background: #0998A4; color: white"; >Retourner à
-            l'acceuil</button>
+                style="background: #0998A4; color: white;" type="button">Retourner à
+            l'acceuil
+        </button>
 
-        <button type="button" class="btn"
-                style="background: #0998A4; color: white"; >
+        <button class="btn"
+                style="background: #0998A4; color: white;" type="button">
             Favoris <span class="fa fa-heart"></span>
         </button>
 
@@ -50,9 +53,10 @@
 <div class="container mt-5">
     <div class="card">
         <div class="card-header"
-             style="color: #0998A4; font-size: 200%; font-family: fantasy;">Authentification</div>
+             style="color: #0998A4; font-size: 200%; font-family: fantasy;">Authentification
+        </div>
         <!-- DEBUT FORMULAIRE -->
-        <form th:action="@{/login}" method="post">
+        <form method="post" th:action="@{/login}">
             <hr>
             <hr>
             <!-- Name -->
@@ -60,8 +64,9 @@
                 <div class="input-group-append">
 						<span class="input-group-text"><i
                                 class="fa fas fa-envelope"></i></span>
-                    <input type="text" id="" class="form-control" name="username" placeholder="pseudo"
-                           style="width: 300px; height: 30px;" value="">
+                    <input class="form-control" id="" name="username" placeholder="pseudo"
+                           style="width: 300px; height: 30px;"
+                           type="text" value="">
                 </div>
             </div>
             <br> <br>
@@ -69,124 +74,126 @@
             <div class="form-row justify-content-center">
                 <div class="input-group-append">
                     <span class="input-group-text"><i class="fa fas fa-key"></i></span>
-                    <input type="password" id="" class="form-control" name="password"
-                           placeholder="Mot de passe*" style="width: 300px; height: 30px;"
+                    <input class="form-control" id="" name="password" placeholder="Mot de passe*"
+                           style="width: 300px; height: 30px;" type="password"
                            value="">
                 </div>
             </div>
             <br>
             <!-- Sign up button -->
             <div class="form-row justify-content-center">
-                <button class="btn btn-light my-4 btn-block" type="submit"
-                        style="color: #0998A4; border: solid; font-weight: bold; width: 300px;">
-                    Se connecter</button>
+                <button class="btn btn-light my-4 btn-block"
+                        style="color: #0998A4; border: solid; font-weight: bold; width: 300px;"
+                        type="submit">
+                    Se connecter
+                </button>
 
             </div>
             <div class="d-flex justify-content-center links">
-                Vous êtes pas inscrit ? <a href="#" class="ml-2">S'inscrire</a>
+                Vous êtes pas inscrit ? <a class="ml-2" href="#">S'inscrire</a>
             </div>
             <div class="d-flex justify-content-center links">
                 <a href="#">Mot de passe oublié ?</a>
             </div>
             <br> *Mentions obligatoires <br>
-</form>
+        </form>
 
-<!-- FIN FORMULAIRE -->
-<!-- DEBUT FOOTER -->
-<footer class="page-footer" style="color: white; background: #0998A4;">
-    <hr>
-    <div class="container text-center text-md-left mt-5">
-        <!-- Grid row -->
-        <div class="row mt-3">
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-                <!-- Content -->
-                <h6 class="text-uppercase font-weight-bold">ShopEnLigne</h6>
-                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                    style="width: 60px;">
-                <p>Le contenu de ce site est protégé par la loi du copyright</p>
+        <!-- FIN FORMULAIRE -->
+        <!-- DEBUT FOOTER -->
+        <footer class="page-footer" style="color: white; background: #0998A4;">
+            <hr>
+            <div class="container text-center text-md-left mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                        <!-- Content -->
+                        <h6 class="text-uppercase font-weight-bold">ShopEnLigne</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                            style="width: 60px;">
+                        <p>Le contenu de ce site est protégé par la loi du copyright</p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase font-weight-bold">Produits</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                            style="width: 60px;">
+                        <p>
+                            <a href="#!" style="color: white;">Femme</a>
+                        </p>
+                        <p>
+                            <a href="#!" style="color: white;">Homme</a>
+                        </p>
+                        <p>
+                            <a href="#!" style="color: white;">Accessoires</a>
+                        </p>
+                        <p>
+                            <a href="#!" style="color: white;">Promotions</a>
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+                        <!-- Links -->
+                        <h6 class="text-uppercase font-weight-bold">Help</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                            style="width: 60px;">
+                        <p>
+                            <a href="#!" style="color: white;">Service Client</a>
+                        </p>
+                        <p>
+                            <a href="#!" style="color: white;">Mon compte</a>
+                        </p>
+                        <p>
+                            <a href="#!" style="color: white;">Magasin</a>
+                        </p>
+                        <p>
+                            <a href="#!" style="color: white;">Mentions Légales</a>
+                        </p>
+                    </div>
+
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                        <!-- Links -->
+                        <h6 class="text-uppercase font-weight-bold">Contact</h6>
+                        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
+                            style="width: 60px;">
+                        <p>
+                            <i class="fa fa-home mr-3"></i> Paris,75000
+                        </p>
+                        <p>
+                            <i class="fa fa-envelope mr-3"></i> ShopEnLigne@gmail.com
+                        </p>
+                        <p>
+                            <i class="fa fa-phone mr-3"></i> + 01 000 00 00
+                        </p>
+                        <p>
+                            <i class="fa fa-print mr-3"></i> + 01 000 00 00
+                        </p>
+
+                    </div>
+                    <!-- Grid column -->
+
+                </div>
+                <!-- Grid row -->
+
             </div>
-            <!-- Grid column -->
-            <!-- Grid column -->
-            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-                <!-- Links -->
-                <h6 class="text-uppercase font-weight-bold">Produits</h6>
-                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                    style="width: 60px;">
-                <p>
-                    <a href="#!" style="color: white;">Femme</a>
-                </p>
-                <p>
-                    <a href="#!" style="color: white;">Homme</a>
-                </p>
-                <p>
-                    <a href="#!" style="color: white;">Accessoires</a>
-                </p>
-                <p>
-                    <a href="#!" style="color: white;">Promotions</a>
-                </p>
+            <!-- Footer Links -->
 
+            <!-- Copyright -->
+            <div class="footer-copyright text-center py-3">
+                © 2020 Copyright:ShopEnLigne tous droits réservés <a href="#"
+                                                                     style="color: white;"></a>
             </div>
-            <!-- Grid column -->
+            <!-- Copyright -->
 
-            <!-- Grid column -->
-            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-
-                <!-- Links -->
-                <h6 class="text-uppercase font-weight-bold">Help</h6>
-                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                    style="width: 60px;">
-                <p>
-                    <a href="#!" style="color: white;">Service Client</a>
-                </p>
-                <p>
-                    <a href="#!" style="color: white;">Mon compte</a>
-                </p>
-                <p>
-                    <a href="#!" style="color: white;">Magasin</a>
-                </p>
-                <p>
-                    <a href="#!" style="color: white;">Mentions Légales</a>
-                </p>
-            </div>
-
-            <!-- Grid column -->
-            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-
-                <!-- Links -->
-                <h6 class="text-uppercase font-weight-bold">Contact</h6>
-                <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto"
-                    style="width: 60px;">
-                <p>
-                    <i class="fa fa-home mr-3"></i> Paris,75000
-                </p>
-                <p>
-                    <i class="fa fa-envelope mr-3"></i> ShopEnLigne@gmail.com
-                </p>
-                <p>
-                    <i class="fa fa-phone mr-3"></i> + 01 000 00 00
-                </p>
-                <p>
-                    <i class="fa fa-print mr-3"></i> + 01 000 00 00
-                </p>
-
-            </div>
-            <!-- Grid column -->
-
-        </div>
-        <!-- Grid row -->
-
-    </div>
-    <!-- Footer Links -->
-
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">
-        © 2020 Copyright:ShopEnLigne tous droits réservés <a href="#"
-                                                          style="color: white;"></a>
-    </div>
-    <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
+        </footer>
+        <!-- Footer -->
 </body>
 </html>

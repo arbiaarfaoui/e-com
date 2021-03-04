@@ -1,54 +1,63 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org"
-       xmlns:sec="http://www.thymeleaf.org/extras/spring-security5">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Produits</title>
     <!-- Design bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"/>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" rel="stylesheet"/>
+    <script crossorigin="anonymous"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <!-- LINK CSS FILE -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/styles.css}">
-    <link rel="icon" type="image/png"
-          href="https://zupimages.net/up/21/06/gqsr.jpg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles.css}" type="text/css">
+    <link href="https://zupimages.net/up/21/06/gqsr.jpg" rel="icon"
+          type="image/png"/>
 </head>
 <body>
 <!-- DEBUT HEADER -->
 <div class="header-container">
     <div class="site-name">
         <a href="https://zupimages.net/viewer.php?id=21/06/rcrz.png"><img
-                src="https://zupimages.net/up/21/06/rcrz.png" alt=""  height="60x"
+                alt="" height="60x" src="https://zupimages.net/up/21/06/rcrz.png"
                 width="250x">
         </a>
     </div>
     <div class="header-bar">
         <!--NEW BLOCK -->
         <!--BOUTONS -->
-        <form name="logoutForm" th:action="@{/logout}" method="post">
+        <form method="post" name="logoutForm" th:action="@{/logout}">
             <h7 sec:authorize="isAuthenticated()"
-                style="color:royalblue;font-weight:bold;"> Bienvenue </h7>
+                style="color:royalblue;font-weight:bold;"> Bienvenue
+            </h7>
 
-            <a sec:authorize="isAuthenticated()" sec:authentication="name"
-               style="color: royalblue;"></a> <a sec:authorize="!isAuthenticated()"
-                                           type="button" class="btn" th:href="@{/login}"
-                                           style="background: #0998A4; color: white"> Connexion <span
+            <a sec:authentication="name" sec:authorize="isAuthenticated()"
+               style="color: royalblue;"></a> <a class="btn"
+                                                 sec:authorize="!isAuthenticated()"
+                                                 style="background: #0998A4; color: white" th:href="@{/login}"
+                                                 type="button"> Connexion <span
                 class="fa fa-user"> </span></a>
 
 
-            <button sec:authorize="isAuthenticated()" class="btn" type="submit"
-                    value="Sign Out" style="background: #0998A4; color: white">Déconnexion</button>
+            <button class="btn" sec:authorize="isAuthenticated()" style="background: #0998A4; color: white"
+                    type="submit" value="Sign Out">Déconnexion
+            </button>
 
-            <button type="button" class="btn"
-                    style="background: #0998A4; color: white">
+            <button class="btn" style="background: #0998A4; color: white"
+                    type="button">
                 Favoris <span class="fa fa-heart"></span>
             </button>
-            <button type="button" class="btn"
-                    onclick="window.location='AjoutPanier'"
-                    style="background: #0998A4; color: white">
+            <button class="btn" onclick="window.location='AjoutPanier'"
+                    style="background: #0998A4; color: white"
+                    type="button">
                 Panier <span class="fa fa-shopping-cart"></span>
             </button>
         </form>
@@ -66,13 +75,13 @@
     <div class="row d-flex justify-content-center">
         <div class="col-6">
             <br> <br> <br> <br> <br>
-            <form th:action="@{/products}" method="get">
+            <form method="get" th:action="@{/products}">
                 <!-- la classe mb-3 permet d'ajouter un petit espace MarginButtom -->
                 <div class="input-group">
                     <!-- th:value="${motCle}" permet de récupérer le mot clé saisit par l'utilisateur dans la barre de recherche -->
 
-                    <input type="text" placeholder="Taper votre recherche"
-                           name="motCle" th:value="${motCle}" class="form-control" />
+                    <input class="form-control" name="motCle"
+                           placeholder="Taper votre recherche" th:value="${motCle}" type="text"/>
                     <button class="btn"
                             style="color: #0998A4; width: 130px; height: 40px; font-weight: bold;">
                         <span class="fa fa-search"></span>Chercher
@@ -88,7 +97,8 @@
     <div class="card">
         <div class="card-header"
              style="color: #0998A4; font-size: 200%; font-family: fantasy;">Nos
-            produits</div>
+            produits
+        </div>
         <div class="card-body">
             <!-- VERSION 2 DE PRESENTATION DES PRODUITS  -->
             <div class="row">
@@ -96,8 +106,8 @@
                     <div class="col-lg-4">
                         <div class="card mt-2 ml-5">
                             <div class="card-body">
-                                <br> <img th:src="${p.photo}" alt="PhotoProduit"
-                                          style="width: 250px; height: 250px">
+                                <br> <img alt="PhotoProduit" style="width: 250px; height: 250px"
+                                          th:src="${p.photo}">
                                 <h6 th:text="${p.designation}"></h6>
                                 <h6 class="fa fa-tag" th:text="'    '+${p.prix} + ' €'"></h6>
                                 <br>
@@ -126,8 +136,8 @@
                             <!-- Boutton Supprimer -->
                             <div sec:authorize="hasRole('ROLE_ADMIN')">
                                 <a
-                                        onclick="javascript:return confirm('Voulez-vous vraiment supprimer ce produit?')"
                                         class="btn btn-light"
+                                        onclick="javascript:return confirm('Voulez-vous vraiment supprimer ce produit?')"
                                         th:href="@{/deleteProduit(id=${p.id},page=${currentPage}, size=${size}, motCle=${motCle})}">Rupture
                                     de stock : Supprimer</a>
 
@@ -148,7 +158,7 @@
             <ul class="pagination justify-content-center">
                 <ul class="nav nav-pills">
                     <li class="page-item"><a class="page-link"
-                                             style="color: #0998A4;" href="#" tabindex="-1">Précédent</a></li>
+                                             href="#" style="color: #0998A4;" tabindex="-1">Précédent</a></li>
                     <!-- créer une bare de navigation -->
                     <li th:each="page,status:${pages}">
                         <!-- si je clique sur le numéro de la page, la page correspondante s'affiche -->
@@ -159,7 +169,7 @@
                            th:text="${status.index+1}"></a>
                     </li>
                     <li class="page-item"><a class="page-link"
-                                             style="color: #0998A4;" href="#">Suivant</a></li>
+                                             href="#" style="color: #0998A4;">Suivant</a></li>
                 </ul>
             </ul>
         </div>
